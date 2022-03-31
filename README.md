@@ -33,13 +33,19 @@ Note: In case this doesn't work, try `rails db:drop` and do the steps all over a
 
 ### Install
 - Run `bundle install` to install all the necessary dependencies
+  
+### Tests
+
+- Open a terminal and cd into the project repository.
+- Run rspec ./spec/requests/users_request_spec.rb.
+- Run rspec ./spec/requests/posts_request_spec.rb.
 
 ### Usage
 - Run `rails s` to expose a local webserver
 
 ## Authors
 
-👤 **Nicu**
+👤 **J. Oliver Coimbra**
 
 - GitHub: [@oliverSCZ](https://github.com/oliverscz)
 - Twitter: [@olivercoimbra](https://twitter.com/olivercoimbra)

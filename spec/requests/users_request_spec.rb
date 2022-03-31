@@ -29,7 +29,7 @@ RSpec.describe 'Users', type: :request do
     end
 
     it 'includes correct placeholder text' do
-      expect(response.body).to include('This is the page where you will see the specific user, his bio and lists of posts')
+      expect(response.body).to include('This is the page where you will see the specific user, his bio and posts')
     end
   end
 end

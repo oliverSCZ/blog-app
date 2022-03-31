@@ -29,7 +29,7 @@ RSpec.describe 'Posts', type: :request do
     end
 
     it 'includes correct placeholder text' do
-      expect(response.body).to include('This is the page where you will see the specific post and all the comments for that post')
+      expect(response.body).to include('This is the page where you will see the specific post and all of its comments.')
     end
   end
 end

@@ -1,1 +1,19 @@
-<h1>This is the page where you will see the specific post and all of its comments.</h1>
+<main>
+  <div class="border comments-top">
+    <div>
+      <h3 class="title">
+      <%= @post.title %> by <%= @post.author.name %>
+      </h3>
+      <ul class="comm-likes flex-row">
+        <li><p>Comments: <%= @post.comments_counter ? @post.comments_counter : 0 %></p></li>
+        <li><p>Likes: <%= @post.likes_counter ? @post.likes_counter : 0  %></p></li>
+      </ul>
+    </div>
+    <div>
+      <p class="text"><%= @post.text %></p>
+    </div>
+  </div>
+
+  <%= render partial:"comment", locals:{post: @post} %>
+
+</main>

@@ -25,7 +25,7 @@ class CommentsController < ApplicationController
 
     redirect_to root_path, notice: 'Comment Deleted!'
   end
-  
+
   private
 
   def comment_params

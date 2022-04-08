@@ -1,20 +1,21 @@
-<main>
+<div class="m-5vw">
 
 <%= render "user", user: @user %>
   
-<%= button_to "Create new post", new_user_post_path, method: :get, class:"btn"%>
+<%= button_to "Create new post", new_user_post_path, method: :get, class:"mx-auto btn btn-warning"%>
  
   <div>
-    <ul class="list-user_post flex-column">
+    <ul>
       <% @user_posts.each_with_index do |post, index| %>
-        <li class="item-user_post border">
+        
+        <li class="flex-container mb-5vh flex-col">
           <%= link_to user_post_path(@user, post) do%>
 
             <%= render partial: "post", locals:{post: post, index: index}  %>
 
             <% if post.comments.length > 0 %>
               <h3 class="title last-title">Last comments</h3>
-              <div class="comments border">
+              <div class="border-solid mt-15px p-20">
                 <ul>                    
                   <% Post.recent_comments.each do |comment| %>
                     <%= render partial:"comment", locals:{comment: comment} %>         
@@ -23,13 +24,14 @@
                 </ul>
               </div>
             <% else %>
-              <h3 class="title last-title">No comments yet</h3>
+              <h3>No comments yet</h3>
             <% end %>
             
           <% end %>  
-          <%= button_to "Comment", new_user_post_comment_path({post_id: post.id, user_id: @user_id}), method: :get, class:"btn btn-secondary"%>
-          <%= button_to "Like", user_post_likes_path({post_id: post.id, user_id: @user_id}), method: :post, class:"btn btn-secondary"%> 
-
+          <div class="d-flex flex-row bd-highlight mb-3">
+          <div class="p-2 bd-highlight"><%= button_to "Comment", new_user_post_comment_path({post_id: post.id, user_id: @user_id}), method: :get, class:"btn btn-secondary"%></div>
+          <div class="p-2 bd-highlight"><%= button_to "Like", user_post_likes_path({post_id: post.id, user_id: @user_id}), method: :post, class:"btn btn-secondary"%></div>
+          </div>        
         </li>        
       <% end %>
     </ul>
@@ -37,4 +39,4 @@
   
   <%= button_to "Create new post", new_user_post_path, method: :get, class:"btn btn-warning"%>
 
-</main>
+</div>

@@ -1,7 +1,9 @@
-<div class="div_list_item-users flex-row">
-  <%= image_tag (user.photo), class:"photo_users"%>  
-  <div class="inner-div_list_item-users border flex-row">                 
-    <h4 class="users_name"><%= user.name %></h4>          
-    <p class="posts_count">Number of post: <%=  user.posts_counter %></p>
-  </div>
-</div>
+<ul>
+  <li class="flex-container mb-5vh border-solid">
+      <%= image_tag (user.photo), class:"w-15"%>  
+      <div class="flex-container flex-col m-20 space-btw w-100">                
+        <h2><%=link_to user.name, user%></h2>      
+          <p class="align-right">Number of post: <%=  user.posts_counter %></p>
+      </div>
+  <li>
+</ul>

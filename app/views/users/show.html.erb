@@ -1,22 +1,24 @@
-<main>
+<div class="m-5vw">
 
   <%= render "user", user: @user %>
   
-  <div class="user_bio border">
-    <h4 class="user_bio_title title">Bio</h4>
-    <p class="user_bio_text text"><%= @user.bio %></p>
+  <div class="border-solid">
+    <h4 class="m-20">Bio</h4>
+    <p class="m-20"><%= @user.bio %></p>
   </div>
   <div>
-    <ul class="list-user_post flex-column">
+    <ul class="mt-15px">
       <% @user_posts.each_with_index do |post, index| %>
-        <li class="item-user_post border">
+        <li class="flex-container flex-col mb-5vh border-solid p-20">
                     
           <%= render partial: "post", locals:{post: post, index: index}  %>
-          <%= button_to "Comment", new_user_post_comment_path({post_id: post.id, user_id: @user_id}), method: :get, class:"btn"%> 
-          <%= button_to "Like", user_post_likes_path({post_id: post.id, user_id: @user_id}), method: :post, class:"btn"%> 
+          <div class="d-flex flex-row bd-highlight mb-3">
+          <div class="p-2 bd-highlight"><%= button_to "Comment", new_user_post_comment_path({post_id: post.id, user_id: @user_id}), method: :get, class:"mt-15px mb-5vh"%> </div>
+          <div class="p-2 bd-highlight"><%= button_to "Like", user_post_likes_path({post_id: post.id, user_id: @user_id}), method: :post, class:"mt-15px mb-5vh"%> </div>
+          </div>
         </li>
       <% end %>
     </ul>
   </div>
-  <%= button_to 'See all posts', user_posts_path(@user_id), method: :get, class:"btn btn-primary" %>
-</main>
+  <%= button_to 'See all posts', user_posts_path(@user_id), method: :get, class:"mt-15px mb-5vh" %>
+</div>

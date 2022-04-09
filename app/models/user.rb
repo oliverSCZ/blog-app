@@ -1,12 +1,12 @@
 class User < ApplicationRecord
-  has_many :comments
-  has_many :posts
-  has_many :likes
-  def self.three_most_recent_post
-    i = Post.ids.length
-    (i - 2..i).each do |_a|
-      puts Post.find_by(id: i).text
-      i -= 1
-    end
+  has_many :comments, foreign_key: :author_id, dependent: :destroy
+  has_many :posts, foreign_key: :author_id, dependent: :destroy
+  has_many :likes, foreign_key: :author_id, dependent: :destroy
+
+  validates :name, presence: true, length: { minimum: 3 }
+  validates :posts_counter, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
+
+  def three_most_recent_post
+    posts.order(created_at: :desc).limit(3)
   end
 end

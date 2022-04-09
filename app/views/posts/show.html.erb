@@ -1,18 +1,19 @@
-<main>
-  <div class="border comments-top">
+<p class="notice text-green-700"><%= notice %></p>
+<div class="m-5vw">
+  <div class="border-solid p-20 flex-container flex-col mb-2vh">
     <div>
-      <h3 class="title">
+      <h3>
       <%= @post.title %> by <%= @post.author.name %>
       </h3>
       <%= render partial: "comm_like", locals:{post: @post}  %>
       </div>
     <div>
-      <p class="text"><%= @post.text %></p>
+      <p><%= @post.text %></p>
     </div>
   </div>
 
   <% if @post.comments.length > 0 %>
-    <div class="comments border">
+    <div class="border-solid p-20 mt-15px mb-5vh">
       <ul>                    
         <% @post.comments.each do |comment| %>
           <%= render partial:"comment", locals:{comment: comment} %>         
@@ -20,9 +21,12 @@
       </ul>
     </div>  
   <% else %>
-    <h3 class="title last-title">No comments yet</h3>
+    <h3>No comments yet</h3>
   <% end %>
-  <%= button_to "Comment", new_user_post_comment_path({post_id: @post.id, user_id: @user_id}), method: :get, class:"btn btn-secondary"%>
-  <%= button_to "Like", user_post_likes_path({post_id: @post.id, user_id: @user_id}), method: :post, class:"btn btn-secondary"%>
-
-</main>
+  <p class="notice text-green-700"><%= notice %></p>
+  <div class="d-flex flex-row bd-highlight mb-3">
+  <div class="p-2 bd-highlight"><%= button_to "Comment", new_user_post_comment_path({post_id: @post.id, user_id: @user_id}), method: :get, class:"btn btn-secondary"%></div>
+  <div class="p-2 bd-highlight"><%= button_to "Like", user_post_likes_path({post_id: @post.id, user_id: @user_id}), method: :post, class:"btn btn-success"%></div>
+  </div>
+  
+</div>

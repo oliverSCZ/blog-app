@@ -12,10 +12,10 @@ class CommentsController < ApplicationController
     @comment = Comment.new(post: @current_post, author: @current_user, text: params[:comment][:text])
 
     if @comment.save
-      redirect_to user_posts_url({ id: @post.id }), flash: { success: 'Your comment was saved' }
+      flash[:notice] = 'Comment created!'
+      redirect_to user_posts_path({ id: @post.id })
     else
-      flash.now => { error: 'Something went wrong with your comment' }
-      render :new
+      flash[:notice] = 'Comment was not created.'
     end
   end
 

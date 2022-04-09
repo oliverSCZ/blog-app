@@ -1,6 +1,6 @@
-<div>
-  <h4 class="title">Post n° <%= index + 1 %></h4>
-  <p class="text"><%= post.text %></p>
+<div class="border-solid flex-container flex-col space-between p-20">
+  <h4 class="mb-5vh">Post n° <%= index + 1 %></h4>
+  <p><%= post.text %></p>
   
   <%= render partial: "comm_like", locals:{post: post, user_id: @user_id, post_id: post.id}  %>
  

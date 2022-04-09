@@ -18,7 +18,7 @@ class CommentsController < ApplicationController
       flash[:notice] = 'Comment was not created.'
     end
   end
-  
+
   private
 
   def comment_params

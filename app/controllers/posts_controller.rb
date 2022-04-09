@@ -19,7 +19,7 @@ class PostsController < ApplicationController
     @post = Post.new(author: @current_user, title: params[:post][:title], text: params[:post] [:text])
     @post.comments_counter = 0
     @post.likes_counter = 0
-    
+
     if @post.save
       redirect_to user_posts_path({ id: @post.id }), notice: 'Post was successfully created.'
     else

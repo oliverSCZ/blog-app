@@ -1,9 +1,6 @@
-class AddRefsToComments < ActiveRecord::Migration[7.0]
+AddRefsToComments < ActiveRecord::Migration[7.0]
   def change
-    add_reference :comments, :user, null: false, foreign_key: true
-    add_reference :comments, :post, null: false, foreign_key: true
-    rename_column :comments, :user_id, :author_id
-    add_index :comments, :user
-    add_index :comments, :post
+    add_reference :comments, :author, foreign_key: { to_table: :users }, null: false
+    add_reference :comments, :posts, null: false, foreign_key: true
   end
 end

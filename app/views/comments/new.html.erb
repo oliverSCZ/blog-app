@@ -2,9 +2,12 @@
 <div class="mb-3">
   <%= form_with(model: @comment, url: user_post_comments_path, method: :post, local: true, class:"row g-3") do |form| %>
     <%= form.label(:text, "Comment", class:"form-label") %>
+    <div>
     <%= form.text_area(:text, class:"form-control") %>
-    <div class="col-auto">
+    </div>
+    <div class="bg-sky-500 text-white rounded p-2 mt-5 w-fit" >
     <%= form.submit "Submit Comment"%>
     </div>
   <% end %>
+  <p class="notice text-green-700"><%= notice %></p>
 </div>

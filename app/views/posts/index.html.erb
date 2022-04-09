@@ -1,5 +1,5 @@
 <div class="m-5vw">
-
+<p class="notice text-green-700"><%= notice %></p>
 <%= render "user", user: @user %>
   
 <%= button_to "Create new post", new_user_post_path, method: :get, class:"mx-auto btn btn-warning"%>
@@ -17,7 +17,7 @@
               <h3 class="title last-title">Last comments</h3>
               <div class="border-solid mt-15px p-20">
                 <ul>                    
-                  <% Post.recent_comments.each do |comment| %>
+                  <% post.recent_comments.each do |comment| %>
                     <%= render partial:"comment", locals:{comment: comment} %>         
             
                   <% end %>              
@@ -36,7 +36,7 @@
       <% end %>
     </ul>
   </div>
-  
+  <p class="notice text-green-700"><%= notice %></p>
   <%= button_to "Create new post", new_user_post_path, method: :get, class:"btn btn-warning"%>
 
 </div>

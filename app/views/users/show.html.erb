@@ -8,17 +8,17 @@
   </div>
   <div>
     <ul class="mt-15px">
-      <% @user_posts.each_with_index do |post, index| %>
+      <% @user.three_most_recent_post.each_with_index do |post, index| %>
         <li class="flex-container flex-col mb-5vh border-solid p-20">
                     
           <%= render partial: "post", locals:{post: post, index: index}  %>
           <div class="d-flex flex-row bd-highlight mb-3">
-          <div class="p-2 bd-highlight"><%= button_to "Comment", new_user_post_comment_path({post_id: post.id, user_id: @user_id}), method: :get, class:"mt-15px mb-5vh"%> </div>
-          <div class="p-2 bd-highlight"><%= button_to "Like", user_post_likes_path({post_id: post.id, user_id: @user_id}), method: :post, class:"mt-15px mb-5vh"%> </div>
+          <div class="p-2 bd-highlight"><%= button_to "Comment", new_user_post_comment_path({post_id: post.id, user_id: @user.id}), method: :get, class:"mt-15px mb-5vh"%> </div>
+          <div class="p-2 bd-highlight"><%= button_to "Like", user_post_likes_path({post_id: post.id, user_id: @user.id}), method: :post, class:"mt-15px mb-5vh"%> </div>
           </div>
         </li>
       <% end %>
     </ul>
   </div>
-  <%= button_to 'See all posts', user_posts_path(@user_id), method: :get, class:"mt-15px mb-5vh" %>
+  <%= button_to 'See all posts', user_posts_path(@user.id), method: :get, class:"mt-15px mb-5vh" %>
 </div>

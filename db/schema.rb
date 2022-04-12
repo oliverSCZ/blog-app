@@ -1,34 +1,46 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
+# This file is auto-generated from the current state of the database. Instead
+# of editing this file, please use the migrations feature of Active Record to
+# incrementally modify your database, and then regenerate this schema definition.
 #
-# Examples:
+# This file is the source Rails uses to define your schema when running `bin/rails
+# db:schema:load`. When creating a new database, `bin/rails db:schema:load` tends to
+# be faster and is potentially less error prone than running all of your
+# migrations from scratch. Old migrations may fail to apply correctly if those
+# migrations use external dependencies or application code.
 #
-#   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
-#   Character.create(name: "Luke", movie: movies.first)
-User.destroy_all
+# It's strongly recommended that you check this file into your version control system.
 
-first_user = User.create(posts_counter: 0, name: 'Hola', photo: 'https://images.unsplash.com/photo-1552374196-c4e7ffc6e126?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2787&q=80', bio: 'Lorry driver in UK.')
-second_user = User.create(posts_counter: 0, name: 'Tom', photo: 'https://images.unsplash.com/photo-1545167622-3a6ac756afa4?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=712&q=80', bio: 'Teacher from Mexico.')
-third_user = User.create(posts_counter: 0, name: 'Lilly', photo: 'https://images.unsplash.com/photo-1521146764736-56c929d59c83?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80', bio: 'Teacher from Poland.')
+ActiveRecord::Schema[7.0].define(version: 2022_04_01_014521) do
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
 
-first_post = Post.create(comments_counter: 0, likes_counter: 0,  author_id: first_user.id, title: 'Hello', text: 'Chocolate is gooood')
-second_post = Post.create(comments_counter: 0, likes_counter: 0,  author_id: first_user.id, title: 'Hello 2', text: 'This is my second post.')
-third_post = Post.create(comments_counter: 0, likes_counter: 0,  author_id: first_user.id, title: 'Ola', text: 'This is my third post.')
-fourth_post = Post.create(comments_counter: 0, likes_counter: 0,  author_id: first_user.id, title: 'Ola 2', text: 'This is my fourth post.')
-fifth_post = Post.create(comments_counter: 0, likes_counter: 0,  author_id: second_user.id, title: 'BauBau', text: 'First post for second_user.')
-sixth_post = Post.create(comments_counter: 0, likes_counter: 0,  author_id: second_user.id, title: 'BauBauBau', text: 'Second post for second_user.')
-seventh_post = Post.create(comments_counter: 0, likes_counter: 0, author_id: third_user.id, title: 'Yes, I am here', text: 'First post for third_user.')
-eigth_post = Post.create(comments_counter: 0, likes_counter: 0,  author_id: third_user.id, title: 'Yes, I am gone', text: 'Second post for third_user.')
+  create_table "comments", force: :cascade do |t|
+    t.text "text"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
-Comment.create(post: first_post, author: second_user, text: 'Hi Oli!' )
-Comment.create(post: first_post, author: third_user, text: 'Hi Mathew!')
-Comment.create(post: first_post, author: third_user, text: 'Hi Max from first user!' )
-Comment.create(post: first_post, author: first_user, text: 'Hi Tom!' )
-Comment.create(post: first_post, author: third_user, text: 'Hi Tomas!' )
-Comment.create(post: first_post, author: first_user, text: 'Hi Lilly!' )
-Comment.create(post: first_post, author: second_user, text: 'Hi Lillian!' )
-Comment.create(post: second_post, author: second_user, text: 'Hi Max from second user!' )
-Comment.create(post: second_post, author: third_user, text: 'Hi Max from third user!' )
-Comment.create(post: third_post, author: first_user, text: 'Hi Max from first user!' )
+  create_table "likes", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
-p "Creadas #{User.count} usuarios"
+  create_table "posts", force: :cascade do |t|
+    t.string "title"
+    t.text "text"
+    t.integer "comments_counter"
+    t.integer "likes_counter"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string "name"
+    t.string "photo"
+    t.text "bio"
+    t.integer "posts_counter"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+end

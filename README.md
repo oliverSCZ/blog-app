@@ -1,19 +1,17 @@
-![](https://img.shields.io/badge/Microverse-blueviolet)
+# Best Blog Ever
 
-# BlogApp
-
-> A simple blog application based on ruby on rails.
-
+This is the best blog app ever app, it was build with love using RoR.
 
 ## Built With
 
 - Ruby
 - Rails
-- HTML&CSS
+- PostgresSQL
+- Tailwind CSS
 
 ## Getting Started
 
-To get a local copy up and running follow these simple example steps.
+To get a local copy up and running follow the steps below.
 
 ### Prerequisites
 - Ruby
@@ -23,11 +21,8 @@ To get a local copy up and running follow these simple example steps.
 - `git clone` this repo
 - `cd` into the generated directory
 - Run `bundle install`
-- In the psql, create a new role with the name of "postgres"
-- export DATABASE_PASSWORD= 123456
 - Run `rails db:create` 
 - Run `rails db:migrate` 
-- Run `rails db:seed` 
 - Run `rails s` 
 Note: In case this doesn't work, try `rails db:drop` and do the steps all over again
 
@@ -36,12 +31,25 @@ Note: In case this doesn't work, try `rails db:drop` and do the steps all over a
   
 ### Tests
 
-- Open a terminal and cd into the project repository.
-- Run rspec ./spec/requests/users_request_spec.rb.
-- Run rspec ./spec/requests/posts_request_spec.rb.
+- Open a terminal and cd into the project folder.
+- Run `rspec ./spec/controllers/users_spec.rb`
+- Run `rspec ./spec/controllers/posts_spec.rb`
 
 ### Usage
 - Run `rails s` to expose a local webserver
+
+### Sending emails
+To test for emails sign up for FREE with [Mailtrap.io](https://mailtrap.io/). 
+Once signed up, copy your email configuration details for mailtrap and configure them in your `config/credentials.rb` file. Please see example below.
+
+`ActionMailer::Base.smtp_settings = {`<br>
+  `:user_name => '<as_provided_by_mailtrap>',`<br>
+  `:password => '<as_provided_by_mailtrap>',`<br>
+  `:address => 'smtp.mailtrap.io',`<br>
+  `:domain => 'smtp.mailtrap.io',`<br>
+  `:port => '2525',`<br>
+  `:authentication => :cram_md5`<br>
+`}`<br>
 
 ## Authors
 

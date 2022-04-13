@@ -1,6 +1,8 @@
 <ul>
   <li class="flex-container mb-5vh border-solid">
+  <% if user.photo %>
       <%= image_tag (user.photo), class:"w-15"%>  
+      <% end %>
       <div class="flex-container flex-col m-20 space-btw w-100">                
         <h2><%=link_to user.name, user%></h2>      
           <p class="align-right">Number of post: <%=  user.posts_counter %></p>

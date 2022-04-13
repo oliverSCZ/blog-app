@@ -1,0 +1,20 @@
+<div class="container w-75">
+<div class="row mx-auto border rounded col-md-6 p-2">
+
+<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+  <div class="field w-100 col-12">
+    <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control mx-auto", placeholder: "Username" %>
+  </div>
+
+  <div class="field my-5">
+   
+    <%= f.password_field :password, autocomplete: "current-password", class: "form-control mx-auto", placeholder: "Password" %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "Log in", class: "btn btn-primary w-100" %>
+  </div>
+<% end %>
+
+</div>
+</div>

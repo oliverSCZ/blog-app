@@ -1,24 +1,37 @@
 <div class="m-5vw">
+  <% if current_user %>
+      <%= render "user", user: @user %>
+      
+      <div class="border-solid">
+        <h4 class="m-20">Bio</h4>
+        <p class="m-20"><%= @user.bio %></p>
+      </div>
+      <div>
+        <ul class="mt-15px">
+          <% @user.three_most_recent_post.each_with_index do |post, index| %>
+            <li class="flex-container flex-col mb-5vh border-solid p-20">
+                        
+              <%= render partial: "post", locals:{post: post, index: index}  %>
+              <div class="d-flex flex-row bd-highlight mb-3">
+              <div class="p-2 bd-highlight"><%= button_to "Comment", new_user_post_comment_path({post_id: post.id, user_id: @user.id}), method: :get, class:"mt-15px mb-5vh"%> </div>
+              <div class="p-2 bd-highlight"><%= button_to "Like", user_post_likes_path({post_id: post.id, user_id: @user.id}), method: :post, class:"mt-15px mb-5vh"%> </div>
+              </div>
+            </li>
+             <% if can? :destroy, post %>
+          <%= button_to "Delete Post", user_post_path(user_id: current_user.id, post_id: post.id), method: :delete %>
+        <% end %>
+    
+          <% end %>
+        </ul>
 
-  <%= render "user", user: @user %>
-  
-  <div class="border-solid">
-    <h4 class="m-20">Bio</h4>
-    <p class="m-20"><%= @user.bio %></p>
-  </div>
-  <div>
-    <ul class="mt-15px">
-      <% @user.three_most_recent_post.each_with_index do |post, index| %>
-        <li class="flex-container flex-col mb-5vh border-solid p-20">
-                    
-          <%= render partial: "post", locals:{post: post, index: index}  %>
-          <div class="d-flex flex-row bd-highlight mb-3">
-          <div class="p-2 bd-highlight"><%= button_to "Comment", new_user_post_comment_path({post_id: post.id, user_id: @user.id}), method: :get, class:"mt-15px mb-5vh"%> </div>
-          <div class="p-2 bd-highlight"><%= button_to "Like", user_post_likes_path({post_id: post.id, user_id: @user.id}), method: :post, class:"mt-15px mb-5vh"%> </div>
-          </div>
-        </li>
-      <% end %>
-    </ul>
-  </div>
-  <%= button_to 'See all posts', user_posts_path(@user.id), method: :get, class:"mt-15px mb-5vh" %>
+      </div>
+      <div class="flex-container">
+      <%= button_to 'See all posts', user_posts_path(@user.id), method: :get, class:"mt-15px mb-5vh" %>
+      <%= button_to "Log out", destroy_user_session_path, method: :delete, :class => "decoration-none mt-15px mb-5vh mr-5vw" %>
+      <%= button_to "Edit Profile", user_registration_path, method: :patch, :class => "decoration-none mt-15px mb-5vh" %>
+      </div>
+      <% else %>
+    <h3>New here?</h3>
+    <%= link_to 'Sign Up', new_user_registration_path %>
+  <% end %>
 </div>

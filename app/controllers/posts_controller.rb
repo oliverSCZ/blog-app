@@ -1,4 +1,6 @@
 class PostsController < ApplicationController
+  load_and_authorize_resource
+  
   def index
     @user_id = User.find params.require(:user_id)
     @user = @user_id
@@ -8,6 +10,8 @@ class PostsController < ApplicationController
   def show
     @post = Post.find(params[:id])
     @user_id = params[:user_id]
+    @comments = Comment.all.where("post_id = #{params[:id]}")
+    @comment = Comment.all.where("post_id = #{params[:id]}, user_id = #{params[:user_id]}")
   end
 
   def new
@@ -26,6 +30,13 @@ class PostsController < ApplicationController
       flash[:notice] = 'Something went wrong!'
       render :new
     end
+  end
+
+  def destroy
+    @post = Post.find(params[:id])
+    @post.destroy
+    flash[:notice] = 'Post was successfully deleted.'
+    redirect_to :action => :index
   end
 
   private

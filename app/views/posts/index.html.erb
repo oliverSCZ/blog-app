@@ -3,7 +3,6 @@
 <%= render "user", user: @user %>
   
 <%= button_to "Create new post", new_user_post_path, method: :get, class:"mx-auto btn btn-warning"%>
- 
   <div>
     <ul>
       <% @user_posts.each_with_index do |post, index| %>

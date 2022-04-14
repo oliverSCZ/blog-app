@@ -17,7 +17,7 @@
       <ul>                    
         <% @post.comments.each do |comment| %>
           <%= render partial:"comment", locals:{comment: comment} %>         
-        <% end %>              
+        <% end %>        
       </ul>
     </div>  
   <% else %>
@@ -27,6 +27,11 @@
   <div class="d-flex flex-row bd-highlight mb-3">
   <div class="p-2 bd-highlight"><%= button_to "Comment", new_user_post_comment_path({post_id: @post.id, user_id: @user_id}), method: :get, class:"btn btn-secondary"%></div>
   <div class="p-2 bd-highlight"><%= button_to "Like", user_post_likes_path({post_id: @post.id, user_id: @user_id}), method: :post, class:"btn btn-success"%></div>
+    <div class="p-2 bd-highlight">
+      <% if can? :destroy, @post %>
+      <%= button_to "Delete post", user_post_path, method: :delete, class:"mx-auto btn btn-warning"%>
+      <% end %>
+    </div>
   </div>
   
 </div>

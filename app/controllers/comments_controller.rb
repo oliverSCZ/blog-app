@@ -8,6 +8,7 @@ class CommentsController < ApplicationController
     @current_user = User.find(params[:user_id])
 
     @current_post = Post.find(params[:post_id])
+    @comment.user_id = @current_user.id
 
     @comment = Comment.new(post: @current_post, author: @current_user, text: params[:comment][:text])
 
@@ -17,6 +18,13 @@ class CommentsController < ApplicationController
     else
       flash[:notice] = 'Comment was not created.'
     end
+  end
+
+  def destroy
+    @comment = Comment.find(params[:id])
+    @comment.destroy
+
+    redirect_to root_path, notice: 'Comment Deleted!'
   end
 
   private

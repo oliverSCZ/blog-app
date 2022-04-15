@@ -11,36 +11,36 @@ RSpec.describe 'User', type: :feature do
     end
   end
 
-  # describe 'index' do
-  #   before :all do
-  #     User.create(name: 'Oli', photo: 'https://placeholder.com', password: '333555', email: 'oli@example.com')
-  #     User.create(name: 'Dante', photo: 'https://placeholder.com', password: '4444555', email: 'dante@example.com')
-  #   end
+  describe 'index' do
+    before :all do
+      User.create(name: 'Oli', photo: 'https://placeholder.com', password: '333555', email: 'oli@example.com')
+      User.create(name: 'Dante', photo: 'https://placeholder.com', password: '4444555', email: 'dante@example.com')
+    end
 
-  #   before :each do
-  #     visit users_path
-  #   end
+    before :each do
+      visit users_path
+    end
 
-  #   it 'shows the username of all users' do
-  #     expect(page).to have_content('Tom')
-  #     expect(page).to have_content('Oli')
-  #     expect(page).to have_content('Dante')
-  #   end
+    it 'shows the username of all users' do
+      expect(page).to have_content('Tom')
+      expect(page).to have_content('Oli')
+      expect(page).to have_content('Dante')
+    end
 
-  #   it 'See the profile picture for each user' do
-  #     all_images = page.all('img')
-  #     expect(all_images.count).to eq(3)
-  #   end
+    it 'See the profile picture for each user' do
+      all_images = page.all('img')
+      expect(all_images.count).to eq(3)
+    end
 
-  #   it 'See the number of posts each user has written' do
-  #     expect(page).to have_content("Number of post: 0")
-  #   end
+    it 'See the number of posts each user has written' do
+      expect(page).to have_content("Number of post: 0")
+    end
 
-  #   it 'When I click on a user, I am redirected to that user\'s show page.' do
-  #     click_link 'Tom'
-  #     expect(page).to have_current_path(user_path('1'))
-  #   end
-  # end
+    it 'When I click on a user, I am redirected to that user\'s show page.' do
+      click_link 'Tom'
+      expect(page).to have_current_path(user_path('1'))
+    end
+  end
 
   describe 'show' do
     before :each do
@@ -51,12 +51,11 @@ RSpec.describe 'User', type: :feature do
 
       if @first_user.posts.count < 3
         unless @first_user.posts.find_by(title: 'Post title 1')
-          @post1 = @first_user.posts.create!(title: 'Post title 1', text: 'Post text 1', comments_counter: 0, likes_counter: 0)
+          @post1 = @first_user.posts.create!(title: 'Post title 1', text: 'Post text 1', comments_counter: 0, likes_counter: 0, author_id: @first_user.id)
         end
-        @post2 = @first_user.posts.create!(title: 'Post title 2', text: 'Post text 2', comments_counter: 0, likes_counter: 0)
-        @post3 = @first_user.posts.create!(title: 'Post title 3', text: 'Post text 3', comments_counter: 0, likes_counter: 0)
+        @post2 = @first_user.posts.create!(title: 'Post title 2', text: 'Post text 2', comments_counter: 0, likes_counter: 0, author_id: @first_user.id)
+        @post3 = @first_user.posts.create!(title: 'Post title 3', text: 'Post text 3', comments_counter: 0, likes_counter: 0, author_id: @first_user.id)
       end
-      byebug
       @post1
       @post1 = @first_user.posts.find(1)
       @post2 = @first_user.posts.find(2)

@@ -5,7 +5,7 @@ class CommentsController < ApplicationController
   end
 
   def create
-    @current_user = User.find(params[:user_id])
+    @current_user = User.find(params[:user_id]).inspect
 
     @current_post = Post.find(params[:post_id])
     @comment.user_id = @current_user.id

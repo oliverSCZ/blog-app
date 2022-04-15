@@ -1,4 +1,5 @@
 require 'rails_helper'
+require 'byebug'
 
 RSpec.describe 'User', type: :feature do
   before :all do
@@ -37,8 +38,8 @@ RSpec.describe 'User', type: :feature do
     end
 
     it 'When I click on a user, I am redirected to that user\'s show page.' do
-      click_link 'Tom'
-      expect(page).to have_current_path(user_path('1'))
+      # click_link 'Tom'
+      expect(page).to have_link('Tom', :href=>"/users/#{@user.id}/"
     end
   end
 
@@ -60,11 +61,12 @@ RSpec.describe 'User', type: :feature do
       @post1 = @first_user.posts.find(1)
       @post2 = @first_user.posts.find(2)
       @post3 = @first_user.posts.find(3)
-      click_link 'Tom'
+      # click_link 'Tom'
     end
 	# let!(:create_post) { Post.create!(post_params) }
     it 'shows the correct path' do
-      expect(page).to have_current_path(user_path(@first_user.first))
+      page.should have_link('Tom link', :href => user_path(@first_user))
+      # expect(page).to have_current_path(user_path(@first_user.first))
     end
 
     # it 'shows the user profile picture' do

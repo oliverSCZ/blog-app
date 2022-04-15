@@ -30,6 +30,13 @@
     </header>
   </div>
   <div class="container p-3 w-50 mx-auto">
+   <% if user_signed_in? %>
+    Hello, <%= current_user.name %>
+    <% else %>
+    Hello, Guest
+    <% end %>
+  </div>
+  <div class="container p-3 w-50 mx-auto">
     <% if notice %>
     <p class="alert alert-success"><%= notice %></p>
 <% end %>

@@ -3,7 +3,7 @@
     <%= comment.author.name %>: <%= comment.text %>
     <br>
     <% if can? :destroy, comment %>
-          <%= link_to "Delete Comment", user_post_comment_path(current_user.id, comment.post_id, comment.id), method: :delete, class: "text-danger mt-2" %>
+          <%= button_to "Delete Comment", user_post_comment_path(current_user.id, comment.post_id, comment.id), method: :delete, class: "btn text-danger mt-2" %>
     <% end %>  
   </div>
 <% end %>  

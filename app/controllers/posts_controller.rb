@@ -2,9 +2,8 @@ class PostsController < ApplicationController
   load_and_authorize_resource
   
   def index
-    @user_id = User.find params.require(:user_id)
-    @user = @user_id
-    @user_posts = Post.where(author_id: @user_id).includes(:comments)
+    @user = User.find params.require(:user_id)
+    @posts = Post.where(author_id: @user_id).includes(:comments)
   end
 
   def show

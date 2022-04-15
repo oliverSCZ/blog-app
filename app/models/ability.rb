@@ -12,12 +12,28 @@ class Ability
 
     # can :read, [Post, Comment], author_id: user.id
     # can :update, [Post, Comment], author_id: user.id
-    can :destroy, [Post, Comment], author_id: user.id
-    can :create, [Post, Comment], author_id: user.id
-    return unless user.admin? 
+    # can :destroy, [Post, Comment], author_id: user.id
+    # can :create, [Post, Comment], author_id: user.id
+    # return unless user.admin? 
 
-    can :create, [Post, Comment]
-    can :destroy, [Post, Comment]
+    # can :create, [Post, Comment]
+    # can :destroy, [Post, Comment]
+
+   def initialize( user )
+    user ||= User.new
+    
+    # Define User abilities
+    if user.role == 'admin'
+      can :manage, Post
+      can :manage, Comment
+    else
+      can :read, Post
+      can :create, Post
+      can :destroy, Post, author_id: user.id
+      can :destroy, Comment, author_id: user.id
+    end
+  end
+
    
     #
     # The first argument to `can` is the action you are giving the user

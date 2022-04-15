@@ -1,11 +1,12 @@
-<ul>
-  <li class="flex-container mb-5vh border-solid">
+<div class="row bg-white rounded py-3">
+  <div class="col-md-3">
   <% if user.photo %>
-      <%= image_tag (user.photo), class:"w-15"%>  
-      <% end %>
-      <div class="flex-container flex-col m-20 space-btw w-100">                
-        <h2><%=link_to user.name, user%></h2>      
-          <p class="align-right">Number of post: <%=  user.posts_counter %></p>
-      </div>
-  <li>
-</ul>
+      <%= image_tag (user.photo), class:"img-fluid rounded"%>  
+  <% end %>
+  </div>
+  <article class="col-md-9 blog-post">             
+    <h2 class="blog-post-title"><%=link_to user.name, user, class: "text-dark text-decoration-none font-weight-bold" %></h2>      
+      <p class="align-right">Number of post: <%=  user.posts_counter %></p>
+  </article>
+</div>
+<hr>

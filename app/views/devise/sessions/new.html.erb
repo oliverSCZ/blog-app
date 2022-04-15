@@ -1,20 +1,21 @@
-<div class="container w-75">
-<div class="row mx-auto border rounded col-md-6 p-2">
-
+<div class="row bg-white mx-auto border rounded col-md-6 p-3">
+<h3 class="text-center text-bold mb-3"> Log in </h3>
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="field w-100 col-12">
-    <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control mx-auto", placeholder: "Username" %>
+  <div class="col-md-9 mx-auto mb-3">
+    <div class="form-group">
+      <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control mx-auto", placeholder: "Username" %>
+    </div>
   </div>
 
-  <div class="field my-5">
-   
+<div class="col-md-9 mx-auto  mb-3">
+  <div class="form-group">
     <%= f.password_field :password, autocomplete: "current-password", class: "form-control mx-auto", placeholder: "Password" %>
   </div>
-
-  <div class="actions">
+  </div>
+<div class="col-md-9 mx-auto">
+  <div class="form-group">
     <%= f.submit "Log in", class: "btn btn-primary w-100" %>
   </div>
+  </div>
 <% end %>
-
-</div>
 </div>

@@ -1,4 +1,9 @@
-<li class="align-right font-sm">
-  <%= comment.author.name %>: <%= comment.text %>
-</li>
-      
+<% comments.each do |comment| %>
+  <div class="font-sm">
+    <%= comment.author.name %>: <%= comment.text %>
+    <br>
+    <% if can? :destroy, comment %>
+          <%= button_to "Delete Comment", user_post_comment_path(current_user.id, comment.post_id, comment.id), method: :delete, class: "btn text-danger mt-2" %>
+    <% end %>  
+  </div>
+<% end %>  

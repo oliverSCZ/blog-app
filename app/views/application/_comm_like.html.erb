@@ -1,4 +1,4 @@
-<ul class="comm-likes flex-row">
-  <li><p class="align-right font-sm">Comments: <%= post.comments_counter ? post.comments_counter : 0 %>,</p></li>
-  <li><p>Likes: <%= post.likes_counter ? post.likes_counter : 0  %></p></li>  
-</ul>
+<div>
+  <strong>Comments: </strong><%= post.comments_counter ? post.comments_counter : 0 %>,
+  <strong>Likes: </strong><%= post.likes_counter ? post.likes_counter : 0  %>
+</div>

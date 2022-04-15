@@ -1,32 +1,28 @@
-<p class="notice text-green-700"><%= notice %></p>
-<div class="m-5vw">
-  <div class="border-solid p-20 flex-container flex-col mb-2vh">
+
+<div class="bg-white p-3 mb-3  w-50 mx-auto">
+  <div class="row">
     <div>
-      <h3>
-      <%= @post.title %> by <%= @post.author.name %>
-      </h3>
-      <%= render partial: "comm_like", locals:{post: @post}  %>
+      <h4> <%= @post.title %> by <%= @post.author.name %></h4>
+    </div>
+    <hr>
+    <div class="card-body">
+    <p><%= @post.text %></p>
+      <%= render partial: "comm_like", locals:{post: @post, user_id: @user_id, post_id: @post.id}  %>
+      <% if @post.comments_counter > 0 %>
+      <hr>
+      <div class="rounded p-3 bg-light">
+        <%= render partial: "comment", locals:{comments: @post.comments}  %>
       </div>
-    <div>
-      <p><%= @post.text %></p>
+       <% end %>
+    </div>
+    <div class="card-footer">
+    <% if user_signed_in? %>
+      <%= link_to "Comment", new_user_post_comment_path({post_id: @post.id, user_id: @post.author_id}), method: :get, class:"text-primary m-1"%>
+      <%= link_to "Like", "/users/#{@post.author_id}/posts/#{@post.id}/likes", method: :post, class:"text-info m-1"%>
+      <% end %>
+      <% if can? :destroy, @post %>
+      <%= link_to "Delete Post", "/delete/post/#{@post.id}", method: :get, class: "text-danger m-1" %>
+      <% end %>
     </div>
   </div>
-
-  <% if @post.comments.length > 0 %>
-    <div class="border-solid p-20 mt-15px mb-5vh">
-      <ul>                    
-        <% @post.comments.each do |comment| %>
-          <%= render partial:"comment", locals:{comment: comment} %>         
-        <% end %>              
-      </ul>
-    </div>  
-  <% else %>
-    <h3>No comments yet</h3>
-  <% end %>
-  <p class="notice text-green-700"><%= notice %></p>
-  <div class="d-flex flex-row bd-highlight mb-3">
-  <div class="p-2 bd-highlight"><%= button_to "Comment", new_user_post_comment_path({post_id: @post.id, user_id: @user_id}), method: :get, class:"btn btn-secondary"%></div>
-  <div class="p-2 bd-highlight"><%= button_to "Like", user_post_likes_path({post_id: @post.id, user_id: @user_id}), method: :post, class:"btn btn-success"%></div>
-  </div>
-  
 </div>

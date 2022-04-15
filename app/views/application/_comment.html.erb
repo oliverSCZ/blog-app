@@ -1,6 +1,6 @@
 <li class="align-right font-sm">
   <%= comment.author.name %>: <%= comment.text %>
   <% if can? :destroy, comment %>
-        <%= button_to "Delete Comment", user_post_comment_path(user_id: @current_user.id, post_id: @post.id, id:@comment.id), method: :delete %>
+        <%= button_to "Delete Comment", user_post_comment_path(current_user.id, comment.post_id, comment.id), method: :delete %>
   <% end %>  
 </li>

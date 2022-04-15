@@ -27,7 +27,7 @@
     </div>
     <div class="card-footer">
       <%= link_to "Comment", new_user_post_comment_path({post_id: post.id, user_id: @user.id}), method: :get, class:"text-primary m-1"%>
-      <%= link_to "Like", user_post_likes_path({post_id: post.id, user_id: @user.id}), method: :post, class:"text-info m-1"%>
+      <%= link_to "Like", "/users/#{@user.id}/posts/#{post.id}/likes", method: :post, class:"text-info m-1"%>
       <% if can? :destroy, post %>
       <%= link_to "Delete Post", "/users/#{post.author_id}/posts/#{post.id}", method: :delete, class: "text-danger m-1", data: { confirm: 'Are you sure?' } %>
       <% end %>

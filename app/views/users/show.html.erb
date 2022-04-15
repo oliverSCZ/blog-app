@@ -20,7 +20,9 @@
 <div class="bg-white p-3 mb-3  w-50 mx-auto">
   <div class="row">
     <div>
-      <h4><%= post.title %></h4>
+      <h4>
+      <%= link_to post.title, "/users/#{post.author_id}/posts/#{post.id}", class: "text-decoration-none" %>
+      </h4>
     </div>
     <hr>
     <div class="card-body">
@@ -29,9 +31,9 @@
     </div>
     <div class="card-footer">
       <%= link_to "Comment", new_user_post_comment_path({post_id: post.id, user_id: @user.id}), method: :get, class:"text-primary m-1"%>
-      <%= link_to "Like", user_post_likes_path({post_id: post.id, user_id: @user.id}), method: :post, class:"text-info m-1"%>
+      <%= link_to "Like", "/users/#{@user.id}/posts/#{post.id}/likes", method: :post, class:"text-info m-1" %>
       <% if can? :destroy, post %>
-      <%= link_to "Delete Post", user_post_path(user_id: current_user.id, post_id: post.id), method: :delete, class: "text-danger m-1" %>
+      <%= link_to "Delete Post", "/delete/post/#{post.id}", method: :get, class: "text-danger m-1" %>
       <% end %>
     </div>
   </div>

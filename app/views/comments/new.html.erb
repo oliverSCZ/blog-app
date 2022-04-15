@@ -1,13 +1,19 @@
-<h2 class="mb-2vh">Write a new comment:</h2>
-<div class="mb-3">
-  <%= form_with(model: @comment, url: user_post_comments_path, method: :post, local: true, class:"row g-3") do |form| %>
-    <%= form.label(:text, "Comment", class:"form-label") %>
+<div class="row bg-white mb-3 p-3 w-50 mx-auto">
+  <div class="post-form-container">
+    <h2 class="mb-2vh">Write a new comment:</h2>
+    <%= form_with(model: @comment, url: user_post_comments_path, method: :post, local: true, class:"row g-3") do |form| %>
+    <div class="col-md-12 mb-3">
+      <div class="form-group">
+        <%= form.label(:text, "Comment", class:"form-label") %>
+      <div>
     <div>
-    <%= form.text_area(:text, class:"form-control") %>
+    <div class="col-md-12 mb-3">
+      <div class="form-group">
+      <%= form.text_area(:text, class:"form-control") %>
+      </div>
     </div>
-    <div class="bg-sky-500 text-white rounded p-2 mt-5 w-fit" >
-    <%= form.submit "Submit Comment"%>
-    </div>
-  <% end %>
-  <p class="notice text-green-700"><%= notice %></p>
+      <%= form.submit "Submit comment", class: "btn btn-primary" %>
+      <%= link_to "Cancel", "/users/#{current_user.id}/posts", class: "btn" %>
+    <% end %>
+  </div>
 </div>

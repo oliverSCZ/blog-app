@@ -60,17 +60,20 @@ RSpec.describe 'User', type: :feature do
       @post1 = @first_user.posts.find(1)
       @post2 = @first_user.posts.find(2)
       @post3 = @first_user.posts.find(3)
-      click_link 'Tom'
+      
+    end
+    before :each do
+      visit "/users/#{@first_user.id}"
     end
 	# let!(:create_post) { Post.create!(post_params) }
     it 'shows the correct path' do
-      expect(page).to have_current_path(user_path(@first_user.first))
+      expect(page).to have_current_path(user_path(@first_user.id))
     end
 
-    # it 'shows the user profile picture' do
-    #   all_images = page.all('img')
-    #   expect(all_images.count).to eq(1)
-    # end
+    it 'shows the user profile picture' do
+      all_images = page.all('img')
+      expect(all_images.count).to eq(1)
+    end
 
     # it 'shows the user username' do
     #   expect(page.find('h4', text: 'Tom')).to be_truthy

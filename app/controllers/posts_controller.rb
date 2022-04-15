@@ -24,7 +24,7 @@ class PostsController < ApplicationController
     @post.likes_counter = 0
 
     if @post.save
-      redirect_to user_posts_path({ id: @post.id }), notice: 'Post was successfully created.'
+      redirect_to "/users/#{@post.author_id}/posts/#{@post.id}", notice: 'Post was successfully created.'
     else
       flash[:notice] = 'Something went wrong!'
       render :new

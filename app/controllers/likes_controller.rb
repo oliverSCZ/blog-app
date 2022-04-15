@@ -3,10 +3,9 @@ class LikesController < ApplicationController
 
   def create
     @post = Post.find_by_id(params[:post_id])
-    @user = User.find_by_id(params[:user_id])
-    @like = Like.new(post_id: @post.id, author_id: @user.id)
+    @like = Like.new(post_id: @post.id, author_id: @post.author_id)
     if @like.save
-      redirect_to user_posts_url(@user, @post), notice: 'Successful!'
+      redirect_to user_posts_url(@user, @post), notice: 'Your like has been recorded'
     else
       flash.now[:notice] = 'Like could not be added'
     end

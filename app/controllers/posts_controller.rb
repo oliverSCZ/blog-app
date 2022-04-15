@@ -1,10 +1,9 @@
 class PostsController < ApplicationController
   load_and_authorize_resource
-  
+
   def index
-    @user_id = User.find params.require(:user_id)
-    @user = @user_id
-    @user_posts = Post.where(author_id: @user_id).includes(:comments)
+    @user = User.find params.require(:user_id)
+    @posts = Post.where(author_id: @user_id).includes(:comments)
   end
 
   def show
@@ -33,10 +32,11 @@ class PostsController < ApplicationController
   end
 
   def destroy
-    @post = Post.find(params[:id])
+    @post = Post.find(params[:post_id])
+    user_id = @post.author_id
     @post.destroy
     flash[:notice] = 'Post was successfully deleted.'
-    redirect_to :action => :index
+    redirect_to "/users/#{user_id}"
   end
 
   private

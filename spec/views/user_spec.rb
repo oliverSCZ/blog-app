@@ -88,9 +88,9 @@ RSpec.describe 'User', type: :feature do
       expect(page).to have_content("Number of post: #{@first_user.posts.count}")
     end
 
-    # it 'shows the user bio' do
-    #   expect(page).to have_content(@first_user.bio)
-    # end
+    it 'I can see the user\'s bio.' do
+      expect(page).to have_content(@first_user.bio)
+    end
 
     # it 'shows the user\'s first three posts' do
     #   expect(page.find_all('div', class: 'post-card').count).to eq(3)

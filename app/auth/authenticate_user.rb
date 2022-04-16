@@ -14,16 +14,18 @@ class AuthenticateUser
   attr_reader :email, :password
 
   # verify user credentials
+  # rubocop:disable Style/GuardClause
   def user
-    user = User.find_for_database_authentication(email: email)
-    if user.valid_password?(password: password)
-      return user
+    user = User.find_for_database_authentication(email:)
+    if user.valid_password?(password:)
+      user
     else
-       raise(ExceptionHandler::AuthenticationError, Message.invalid_credentials)
+      raise(ExceptionHandler::AuthenticationError, Message.invalid_credentials)
     end
     # user = User.find_by(email: email)
     # return user if user && user.authenticate(password)
     # # raise Authentication error if credentials are invalid
     # raise(ExceptionHandler::AuthenticationError, Message.invalid_credentials)
   end
+  # rubocop:enable Style/GuardClause
 end

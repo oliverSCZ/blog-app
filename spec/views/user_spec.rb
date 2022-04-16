@@ -2,7 +2,6 @@ require 'rails_helper'
 
 RSpec.describe 'User', type: :feature do
   before :all do
-
     visit destroy_user_session_path
     @first_user = User.find_by(name: 'Tom')
     if @first_user.nil?
@@ -33,7 +32,7 @@ RSpec.describe 'User', type: :feature do
     end
 
     it 'See the number of posts each user has written' do
-      expect(page).to have_content("Number of post: 0")
+      expect(page).to have_content('Number of post: 0')
     end
 
     it 'When I click on a user, I am redirected to that user\'s show page.' do
@@ -51,21 +50,23 @@ RSpec.describe 'User', type: :feature do
 
       if @first_user.posts.count < 3
         unless @first_user.posts.find_by(title: 'Post title 1')
-          @post1 = @first_user.posts.create!(title: 'Post title 1', text: 'Post text 1', comments_counter: 0, likes_counter: 0, author_id: @first_user.id)
+          @post1 = @first_user.posts.create!(title: 'Post title 1', text: 'Post text 1', comments_counter: 0,
+                                             likes_counter: 0, author_id: @first_user.id)
         end
-        @post2 = @first_user.posts.create!(title: 'Post title 2', text: 'Post text 2', comments_counter: 0, likes_counter: 0, author_id: @first_user.id)
-        @post3 = @first_user.posts.create!(title: 'Post title 3', text: 'Post text 3', comments_counter: 0, likes_counter: 0, author_id: @first_user.id)
+        @post2 = @first_user.posts.create!(title: 'Post title 2', text: 'Post text 2', comments_counter: 0,
+                                           likes_counter: 0, author_id: @first_user.id)
+        @post3 = @first_user.posts.create!(title: 'Post title 3', text: 'Post text 3', comments_counter: 0,
+                                           likes_counter: 0, author_id: @first_user.id)
       end
-      @post1
+
       @post1 = @first_user.posts.find(1)
       @post2 = @first_user.posts.find(2)
       @post3 = @first_user.posts.find(3)
-      
     end
     before :each do
       visit "/users/#{@first_user.id}"
     end
-	# let!(:create_post) { Post.create!(post_params) }
+    # let!(:create_post) { Post.create!(post_params) }
     it 'shows the correct path' do
       expect(page).to have_current_path(user_path(@first_user.id))
     end
@@ -104,8 +105,8 @@ RSpec.describe 'User', type: :feature do
   end
 end
 
-# RSpec.describe Post, type: :model do 
-# 	describe "validations" do 
+# RSpec.describe Post, type: :model do
+# 	describe "validations" do
 # 		let(:post){FactoryBot.build(:post)}
 # 		it "should have a title" do
 # 			post.title = nil

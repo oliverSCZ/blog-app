@@ -4,7 +4,8 @@
     <%= image_tag (@user.photo), class:"img-fluid rounded"%>  
     <% end %>
   </div>
-  <article class="col-md-9">             
+  <article class="col-md-9">            
+      <h4 class="align-right"><%=  @user.name %></h4> 
       <p class="align-right">Number of post: <%=  @user.posts_counter %></p>
       <% if user_signed_in? %>
         <% if current_user.id == @user.id %>
@@ -24,8 +25,8 @@
 <div class="bg-white p-3 mb-3  w-50 mx-auto">
   <div class="row">
     <div>
-      <h4>
-      <%= link_to post.title, "/users/#{post.author_id}/posts/#{post.id}", class: "text-decoration-none" %>
+      <h4 class="post-title">
+        <%= link_to "/users/#{post.author_id}/posts/#{post.id}" do %><%= post.title %><% end %>
       </h4>
     </div>
     <hr>

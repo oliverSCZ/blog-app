@@ -14,7 +14,7 @@ sixth_post = Post.create(comments_counter: 0, likes_counter: 0,  author_id: seco
 seventh_post = Post.create(comments_counter: 0, likes_counter: 0, author_id: third_user.id, title: 'Yes, I am here', text: 'First post for third_user.')
 eigth_post = Post.create(comments_counter: 0, likes_counter: 0,  author_id: third_user.id, title: 'Yes, I am gone', text: 'Second post for third_user.')
 
-Comment.create(post: first_post, author: second_user, text: 'Hi Oli!' )
+Comment.create(post: first_post, author: second_user, text: 'Hi Oli!', author_id: first_user.id, post_id: first_post.id )
 Comment.create(post: first_post, author: third_user, text: 'Hi Mathew!')
 Comment.create(post: first_post, author: third_user, text: 'Hi Max from first user!' )
 Comment.create(post: first_post, author: first_user, text: 'Hi Tom!' )

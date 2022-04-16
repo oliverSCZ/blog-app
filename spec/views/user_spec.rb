@@ -5,7 +5,8 @@ RSpec.describe 'User', type: :feature do
     visit destroy_user_session_path
     @first_user = User.find_by(name: 'Tom')
     if @first_user.nil?
-      @first_user = User.create(name: 'Tom', photo: 'http://via.placeholder.com', bio: 'User s bio', password: '222555',
+      @first_user = User.create(name: 'Tom', photo: 'http://via.placeholder.com',
+                                bio: 'User s bio', password: '222555',
                                 email: 'tom@example.com')
     end
   end
@@ -102,6 +103,5 @@ RSpec.describe 'User', type: :feature do
       click_link 'See all posts'
       expect(page).to have_current_path(user_posts_path(@first_user))
     end
-    
   end
 end

@@ -5,7 +5,8 @@ RSpec.describe 'Post', type: :feature do
     @first_user = User.find_by(name: 'Jane Doe')
 
     if @first_user.nil?
-      @first_user = User.create(name: 'Jane Doe', photo: 'https://via.placeholder.com/150', bio: 'Farmer', password: '123456',
+      @first_user = User.create(name: 'Jane Doe', photo: 'https://via.placeholder.com/150', bio: 'Farmer',
+                                password: '123456',
                                 email: 'jane@example.com', confirmed_at: '2022-04-16 10:14:43.057417')
     end
 
@@ -61,12 +62,11 @@ RSpec.describe 'Post', type: :feature do
     end
 
     it 'See how many comments a post has.' do
-       expect(page).to have_content("Comments: #{@post1.comments.count}")
+      expect(page).to have_content("Comments: #{@post1.comments.count}")
     end
 
     it 'See how many likes a post has.' do
       expect(page).to have_content("Likes: #{@post1.likes.count}")
-     
     end
 
     it 'Shows the post details when any post is clicked in the post show page' do

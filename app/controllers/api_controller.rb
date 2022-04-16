@@ -1,24 +1,25 @@
 class ApiController < ApplicationController
-    
+   before_action :authenticate_request!
+
+  def index
+    render json: {'logged_in' => true}
+  end
 
     def user_posts
-        @user = current_user
-        @posts = @user.posts
-
-        json_response(@posts)
+        @posts = current_user.posts
+        
+        render json: { posts: @posts }
     end
 
     def user_comments
-        @user = current_user
-        @comments = @user.posts.find(params[:post_id]).comments
+        @comments = current_user.posts.find(params[:post_id]).comments
         
-        json_response(@comments)
+        render json: { comments: @comments }
     end
 
     def create_comment
-        @user = current_user
         @post = Post.find(params[:post_id])
-        @comment = Comment.create(post: @post, author: @user, text: params[:text])
+        @comment = Comment.create(post: @post, author: current_user, text: params[:text])
 
         render json: {status: "Comment created successfully"}
     end

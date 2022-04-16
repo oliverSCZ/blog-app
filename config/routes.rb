@@ -11,9 +11,11 @@ Rails.application.routes.draw do
     end
   end
   
-  post 'auth/login', to: 'authentication#authenticate'
+  post 'api/signup', to: 'users#create'
+  post 'api/auth/login', to: 'authentication#authenticate_user'
+  get 'api/users/posts/:post_id/comments', to: 'api#user_comments'
+  post 'api/users/posts/:post_id/comment', to: 'api#create_comment'
   get 'api/users/:user_id', to: 'api#user_posts'
-  get 'api/users/:user_id/posts/:post_id/comments', to: 'api#user_comments'
   post 'api/users/:user_id/posts/:post_id/comments', to: 'api#create_comment'
   
   namespace :api, defaults: { format: :json} do

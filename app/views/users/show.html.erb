@@ -4,7 +4,8 @@
     <%= image_tag (@user.photo), class:"img-fluid rounded"%>  
     <% end %>
   </div>
-  <article class="col-md-9">             
+  <article class="col-md-9">            
+      <h4 class="align-right"><%=  @user.name %></h4> 
       <p class="align-right">Number of post: <%=  @user.posts_counter %></p>
       <% if user_signed_in? %>
         <% if current_user.id == @user.id %>

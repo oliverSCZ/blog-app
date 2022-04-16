@@ -84,9 +84,9 @@ RSpec.describe 'User', type: :feature do
       expect(page.find('h4', text: 'Tom')).to be_truthy
     end
 
-    # it 'shows the user post count' do
-    #   expect(page).to have_content("Posts: #{@first_user.posts.count}")
-    # end
+    it 'shows the user post count' do
+      expect(page).to have_content("Number of post: #{@first_user.posts.count}")
+    end
 
     # it 'shows the user bio' do
     #   expect(page).to have_content(@first_user.bio)

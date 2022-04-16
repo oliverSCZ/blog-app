@@ -30,7 +30,7 @@ RSpec.describe 'User', type: :feature do
 
     it 'See the profile picture for each user' do
       all_images = page.all('img')
-      expect(all_images.count).to eq(3)
+      expect(all_images.count).to eq(User.count)
     end
 
     it 'See the number of posts each user has written' do
@@ -95,17 +95,13 @@ RSpec.describe 'User', type: :feature do
     end
 
     it 'shows the user\'s first three posts' do
-      expect(page.find_all('h4', class: 'post-title').count).to eq(3)
+      expect(page.find_all('h4', class: 'post-title').count).to eq(@first_user.three_most_recent_post.count)
     end
 
     it 'shows the user\'s posts when any post is clicked' do
-      click_link @post1.title
-      expect(page).to have_current_path("/users/#{@post1.author_id}/posts/#{@post1.id}")
+      click_link 'See all posts'
+      expect(page).to have_current_path(user_posts_path(@first_user))
     end
-
-    it 'shows the post details when any post is clicked in the post index page' do
-      click_link @post1.title
-      expect(page).to have_current_path(user_post_path(@first_user, @post1))
-    end
+    
   end
 end

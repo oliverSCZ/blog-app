@@ -1,7 +1,7 @@
 <div class="row bg-white mb-3 p-3 w-50 mx-auto">
   <div class="col-md-3">
-    <% if current_user.photo %>
-    <%= image_tag (current_user.photo), class:"img-fluid rounded"%>  
+    <% if @current_user.photo %>
+    <%= image_tag (@current_user.photo), class:"img-fluid rounded"%>  
     <% end %>
   </div>
   <article class="col-md-9">             

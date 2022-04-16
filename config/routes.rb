@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   end
   
   get 'api/users/:user_id', to: 'api#user_posts'
+  get 'api/users/:user_id/posts/:post_id/comments', to: 'api#user_comments'
   
   namespace :api, defaults: { format: :json} do
     post 'users/register', to: 'authentication#register'

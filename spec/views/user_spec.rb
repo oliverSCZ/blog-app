@@ -6,15 +6,15 @@ RSpec.describe 'User', type: :feature do
     visit destroy_user_session_path
     @first_user = User.find_by(name: 'Tom')
     if @first_user.nil?
-      @first_user = User.create(name: 'Tom', photo: 'https://placeholder.com', bio: 'User s bio', password: '222555',
+      @first_user = User.create(name: 'Tom', photo: 'https://via.placeholder.com/300.png/09f/fff', bio: 'User s bio', password: '222555',
                                 email: 'tom@example.com')
     end
   end
 
   describe 'index' do
     before :all do
-      User.create(name: 'Oli', photo: 'https://placeholder.com', password: '333555', email: 'oli@example.com')
-      User.create(name: 'Dante', photo: 'https://placeholder.com', password: '4444555', email: 'dante@example.com')
+      User.create(name: 'Oli', photo: 'https://via.placeholder.com/300.png/09f/fff', password: '333555', email: 'oli@example.com')
+      User.create(name: 'Dante', photo: 'https://via.placeholder.com/300.png/09f/fff', password: '4444555', email: 'dante@example.com')
     end
 
     before :each do
@@ -49,17 +49,22 @@ RSpec.describe 'User', type: :feature do
       fill_in 'Password', with: '222555'
       click_button 'Log in'
 
-      if @first_user.posts.count < 3
-        unless @first_user.posts.find_by(title: 'Post title 1')
-          @post1 = @first_user.posts.create!(title: 'Post title 1', text: 'Post text 1', comments_counter: 0, likes_counter: 0, author_id: @first_user.id)
-        end
-        @post2 = @first_user.posts.create!(title: 'Post title 2', text: 'Post text 2', comments_counter: 0, likes_counter: 0, author_id: @first_user.id)
-        @post3 = @first_user.posts.create!(title: 'Post title 3', text: 'Post text 3', comments_counter: 0, likes_counter: 0, author_id: @first_user.id)
+     
+      @post1 = Post.find_by(title: 'Post #1')
+      @post2 = Post.find_by(title: 'Post #2')
+      @post3 = Post.find_by(title: 'Post #3')
+
+      if @post1.nil?
+        @post1 = Post.create(author:  @first_user, title: 'Post #1', text: 'Post #1', comments_counter: 0, likes_counter: 0)
       end
-      @post1
-      @post1 = @first_user.posts.find(1)
-      @post2 = @first_user.posts.find(2)
-      @post3 = @first_user.posts.find(3)
+
+      if @post2.nil?
+        @post2 = Post.create(author:  @first_user, title: 'Post #2', text: 'Post #2', comments_counter: 0, likes_counter: 0)
+      end
+
+      if @post3.nil?
+        @post3 = Post.create(author:  @first_user, title: 'Post #3', text: 'Post #3', comments_counter: 0, likes_counter: 0)
+      end
       
     end
     before :each do
@@ -75,9 +80,9 @@ RSpec.describe 'User', type: :feature do
       expect(all_images.count).to eq(1)
     end
 
-    # it 'shows the user username' do
-    #   expect(page.find('h4', text: 'Tom')).to be_truthy
-    # end
+    it 'shows the user username' do
+      expect(page.find('h4', text: 'Tom')).to be_truthy
+    end
 
     # it 'shows the user post count' do
     #   expect(page).to have_content("Posts: #{@first_user.posts.count}")

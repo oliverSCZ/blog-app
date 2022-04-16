@@ -50,7 +50,6 @@ RSpec.describe 'User', type: :feature do
       fill_in 'Email', with: 'tom@example.com'
       fill_in 'Password', with: '222555'
       click_button 'Log in'
-
       @post1 = Post.find_by(title: 'Post #1')
       @post2 = Post.find_by(title: 'Post #2')
       @post3 = Post.find_by(title: 'Post #3')

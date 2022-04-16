@@ -92,29 +92,18 @@ RSpec.describe 'User', type: :feature do
       expect(page).to have_content(@first_user.bio)
     end
 
-    # it 'shows the user\'s first three posts' do
-    #   expect(page.find_all('div', class: 'post-card').count).to eq(3)
-    # end
+    it 'shows the user\'s first three posts' do
+      expect(page.find_all('h4', class: 'post-title').count).to eq(3)
+    end
 
-    # it 'shows the user\'s posts when any post is clicked' do
-    #   click_link @post1.title
-    #   expect(page).to have_current_path(user_posts_path(@first_user))
-    # end
+    it 'shows the user\'s posts when any post is clicked' do
+      click_link @post1.title
+      expect(page).to have_current_path("/users/#{@post1.author_id}/posts/#{@post1.id}")
+    end
 
-    # it 'shows the post details when any post is clicked in the post index page' do
-    #   click_link @post1.title
-    #   click_link @post1.title
-    #   expect(page).to have_current_path(user_post_path(@first_user, @post1))
-    # end
+    it 'shows the post details when any post is clicked in the post index page' do
+      click_link @post1.title
+      expect(page).to have_current_path(user_post_path(@first_user, @post1))
+    end
   end
 end
-
-# RSpec.describe Post, type: :model do 
-# 	describe "validations" do 
-# 		let(:post){FactoryBot.build(:post)}
-# 		it "should have a title" do
-# 			post.title = nil
-# 			expect(post).to_not be_valid
-# 		end
-# 	end
-# end
